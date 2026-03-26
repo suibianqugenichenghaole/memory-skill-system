@@ -16,6 +16,9 @@ The repository itself remains the main public repository form of the current mem
 - trims some overly detailed self-operating explanations
 - makes the boundary with PM workflow project assets clearer
 - keeps the skill leaner and easier to trial in shared/public contexts
+- adds retrieval-friendly writing rules for stronger continuation and recall consistency
+- adds a durable-entry template for important memory topics
+- adds explicit no-embeddings / FTS-only fallback guidance for degraded retrieval environments
 
 ---
 

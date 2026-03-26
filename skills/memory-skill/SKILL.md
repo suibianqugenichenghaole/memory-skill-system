@@ -161,6 +161,116 @@ Avoid durable storage for:
 When the same confusion appears repeatedly, do not only store the raw question.
 Try to extract the underlying gap and store it as `P4-T4` or `P4-T5` when reusable.
 
+## Retrieval-friendly writing rules
+
+Do not assume search will always infer everything from loose phrasing.
+If a memory entry should be reliably found later, write it in a retrieval-friendly way.
+
+### 1) One topic = one canonical anchor
+For each ongoing topic, choose exactly one canonical anchor name.
+Use that same anchor repeatedly instead of switching between near-synonyms.
+
+Good pattern:
+- Canonical anchor: `project-x`
+- Aliases: `x workflow`, `project x`, `x-system`
+
+Bad pattern:
+- one file uses project name
+- another uses package name
+- another uses repo name
+- no place declares which one is primary
+
+### 2) Write aliases explicitly
+If a topic is likely to be referred to by different names, add an explicit alias line.
+Do not rely on future semantic search to infer all variants.
+
+Recommended alias sources:
+- project name
+- repo name
+- package / delivery name
+- skill name
+- user shorthand
+
+### 3) Use a fixed summary block for important entries
+For durable entries, prefer a compact block with stable labels.
+
+Recommended fields:
+- `Topic:` canonical anchor
+- `Aliases:` common alternative names
+- `Domain:` one of the memory domains
+- `Permission:` safest intended layer
+- `Stage:` current stage/status
+- `Confirmed:` confirmed facts or conclusions
+- `Pointers:` where detailed artifacts live
+- `Next:` likely next step
+
+This should stay concise. The goal is reliable continuation and retrieval, not verbose journaling.
+
+### 4) Separate the main object from its derivatives
+Do not mix these layers without labeling them:
+- the main project/topic
+- related skills
+- repo/publication names
+- package/delivery artifacts
+- one-off bug-fix or shipping events
+
+### 5) Prefer summary + pointer over scattered detail
+If detailed project assets already exist elsewhere, memory should record:
+- what this thing is
+- what stage it is in
+- what is already confirmed
+- where the detailed material lives
+- what to continue next
+
+Do not spread the same topic across multiple daily notes with no canonical summary.
+
+### 6) Promote repeated/important topics upward
+If a topic is likely to be revisited across days, do not leave it only in a transient chat summary or one-off bug log.
+Create or update at least one durable memory entry that uses the canonical anchor and summary block.
+
+### 7) Name once, reuse everywhere
+When you choose a canonical anchor, reuse that exact string in:
+- memory summaries
+- follow-up notes
+- companion meta notes
+- related project summaries when reasonable
+
+Consistency is part of retrieval quality.
+
+## Recommended durable-entry template
+
+Use this when a topic is likely to be revisited across days or needs reliable retrieval.
+Keep it short.
+
+```md
+## Topic summary — <human-readable title>
+- Topic: `<canonical-anchor>`
+- Aliases: `<alias-1>`, `<alias-2>`, `<alias-3>`
+- Domain: `<domain-anchor>`
+- Permission: `<P-layer>`
+- Stage: <current stage in one line>
+- Confirmed:
+  - <confirmed point 1>
+  - <confirmed point 2>
+  - <confirmed point 3>
+- Pointers:
+  - `<path-or-artifact-1>`
+  - `<path-or-artifact-2>`
+- Next:
+  - <next likely continuation step>
+```
+
+### Minimal fill rule
+If you are in a hurry, do not skip the whole entry.
+At minimum, fill:
+- `Topic`
+- `Aliases`
+- `Stage`
+- `Confirmed`
+- `Pointers`
+
+A short structured entry is better than a long unstructured recap.
+
 ---
 
 ## Shared-context safety
@@ -198,6 +308,39 @@ Short version:
 When detailed project assets already exist, prefer storing summary + pointer in memory instead of duplicating the full artifact set.
 
 ---
+
+## No-embeddings / FTS-only fallback mode
+
+If memory search is effectively running without embeddings (for example `provider: none` or `mode: fts-only`), do not pretend semantic recall still works normally.
+
+### Operating assumptions in this mode
+- retrieval is much closer to keyword / anchor matching than semantic recall
+- canonical anchor naming becomes critical
+- explicit aliases matter more than usual
+- scattered mention-only logs are much easier to lose
+
+### Writing rules in this mode
+- always include one canonical `Topic`
+- always include explicit `Aliases` for likely user phrasing variants
+- prefer durable summary entries over process-only scattered notes
+- reuse the exact anchor string across follow-up notes
+- keep `Pointers` explicit so file-based fallback lookup is easy
+
+### Reading / answering rules in this mode
+- try memory search first if required by policy, but do not overtrust an empty result
+- if search returns empty, say you checked and then fall back to anchor/keyword/file lookup
+- prefer exact project names, package names, file names, and stable section titles
+- ask for the most likely anchor term if the wording is vague
+
+### User guidance in this mode
+When helpful, ask for one of these:
+- canonical topic name
+- package / repo / skill name
+- likely file name
+- distinctive phrase used in the saved summary
+
+Short version:
+without embeddings, memory can still work, but it must be written and queried more explicitly.
 
 ## Fallback rule
 

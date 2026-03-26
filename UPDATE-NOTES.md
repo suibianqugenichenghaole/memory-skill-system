@@ -22,6 +22,32 @@ The repository itself remains the main public repository form of the current mem
 
 ---
 
+## Why this update / 为什么更新
+
+### EN
+This update was driven by real usage rather than speculative polish.
+
+Two practical gaps showed up during actual memory-recall work:
+- important memories had been written down, but later retrieval was still unreliable when anchor naming and aliases were inconsistent
+- degraded environments without embeddings needed explicit fallback guidance instead of silently assuming semantic recall still worked
+
+Because of that, this update focuses on two things:
+- stronger retrieval-friendly writing conventions
+- clearer no-embeddings / FTS-only operating guidance
+
+### 中文
+这次更新不是为了“润色一下”，而是被真实使用问题逼出来的。
+
+在实际的 memory 回忆与续写过程中，暴露了两个明显缺口：
+- 有些重要记忆其实已经写下来了，但因为锚点命名和别名不统一，后续仍然不容易稳定找回
+- 在没有 embeddings 的降级环境里，不能再默认语义召回存在，必须明确给出 fallback 使用规则
+
+所以这次更新主要补的是两件事：
+- 更适合检索的书写规范
+- 更明确的 no-embeddings / FTS-only 降级使用说明
+
+---
+
 ## Important boundary
 
 This memory skill is not the same thing as PM workflow project-ops.
